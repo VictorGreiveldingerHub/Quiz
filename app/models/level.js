@@ -1,20 +1,18 @@
-// Création d'une classe par entité 
-class Level {
+// Import du CoreModel
+const CoreModel = require('./coreModels');
+
+// Création d'une classe par entité
+// On fait hériter la classe du CM
+class Level extends CoreModel {
     // Mise en place des propriétés
-    id;
     name;
-    status;
-    created_at;
-    updated_at;
     
     // Mise en place du constructor
     // Prend en param un objet qui contient toutes les valeurs à recopier dans l'instance
     constructor(obj) {
-        this.id = obj.id;
+        // Heritage du coreModel
+        super(obj);
         this.name = obj.name;
-        this.status = obj.status;
-        this.created_at = obj.created_at;
-        this.updated_at = obj.updated_at;
     };
 };
 
