@@ -1,0 +1,20 @@
+{
+  "name": "Quiz",
+  "version": "1.0.0",
+  "description": "Site de quiz",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VictorGreiveldingerHub/Quiz.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VictorGreiveldingerHub/Quiz/issues"
+  },
+  "homepage": "https://github.com/VictorGreiveldingerHub/Quiz#readme"
+}
