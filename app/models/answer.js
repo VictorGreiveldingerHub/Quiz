@@ -16,6 +16,10 @@ class Answer extends CoreModel {
         this.description = obj.description;
         this.question_id = obj.question_id;
     };
+    
+    getId() {
+        return this.id;
+    };
 };
 
 // On export la classe !
