@@ -73,6 +73,34 @@ class Tag extends CoreModel {
         });
     };
     
+    // Méthode pour update un tag
+    update(callback) {
+        const query = `UPDATE "tags" SET
+            "name" = $1,
+            "status" = $2,
+            "updated_at" = CURRENT_TIMESTAMP
+            WHERE "id" = $3
+            RETURNING id, updated_at`;
+        const values = [this.name, this.status, this.id];
+        
+        // console.log(values);
+        // // console.log(updatedInfos);
+        // console.log(query);
+        // console.log(this);
+        
+        // return;
+        
+        dbConnection.query(query, values, (err, data) => {
+            if (err) {
+                callback(err, null);
+            } else {
+                const updatedInfos = data.rows[0];
+                this.updated_at = updatedInfos.updated_at;
+                callback(null, this);
+            };
+        });
+    };
+    
     // Méthode pour insérer un nouveau tag
     // Ici je veux créer un nouveau tag, puis l'insérer dans la BDD
     insert(callback) {
@@ -106,7 +134,6 @@ class Tag extends CoreModel {
             };
         });
     };
-    
 };
 
 // On export la classe !
