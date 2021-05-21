@@ -97,24 +97,3 @@ const User = require('./app/models/user');
 //         user.update();
 //     };
 // });
-
-// // Test pour voir si le User est bien update
-// User.findById(1, (err, goodUser) => {
-//     if (err) {
-//         console.log(err);
-//     } else {
-//         goodUser.firstname = "Victor";
-//         goodUser.lastname = "Greiveldinger";
-//         goodUser.email = "victorgrei@gmail.com";
-//         goodUser.password = "****";
-//         goodUser.update((err2, upTag) => {
-//             console.log(err2, upTag);
-//         });
-//         goodUser.update((err, upUser) => {
-//             console.log(err, upUser);
-//             if (upUser) {
-//                return upUser.insert();
-//             };
-//         });
-//     };
-// });
