@@ -7,6 +7,9 @@ class Quiz extends CoreModel {
     description;
     app_users_id;
     
+    // Prop statique pour la factorisation
+    static tableName = "quizzes";
+    
     // Mise en place du constructor
     // Prend en param un objet qui contient toutes les valeurs à recopier dans l'instance
     constructor(obj) {

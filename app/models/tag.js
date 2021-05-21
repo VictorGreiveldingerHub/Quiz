@@ -6,6 +6,9 @@ class Tag extends CoreModel {
     // Mise en place des propriétés
     name;
     
+    // Prop statique pour la factorisation
+    static tableName = "tags";
+    
     // Petite méthode pour afficher une phrase de présentation du tag
     getName() {
         return "Hello je suis le tag " + this.name;
@@ -19,37 +22,7 @@ class Tag extends CoreModel {
     };
     
     // Méthode pour afficher tous les tags
-    static findAll(callback) {
-        // Query pour récupérer tous les tags de la BDD ...
-        const query = `SELECT * FROM "tags"`;
-                
-        
-        // ... on passe la requête au client, avec un callback qu'on doit passer en argument à findAll(),
-        dbConnection.query(query, (err, data) => {
-            if (err) {
-                console.log(err);
-                // On passe l'erreur mais pas la data
-                callback(err, null);
-            } else {
-                // console.log(data);
-                // Pas d'erreur donc on renvoie la liste des résultats au callback
-                // liste des résultats dans data.rows (==> liste d'objet)
-                
-                // Donc avant de récup les résults => on les tranforme en instance de Tag
-                let allTags = [];
-                
-                for (let prop in data.rows) {
-                    // console.log(data.rows[prop]);
-                    // console.log(data.rows);
-                    const tags = new Tag(data.rows[prop]);
-                    // console.log(tags);
-                    allTags.push(tags);
-                };
-                // console.log(allTags);
-                callback(null, allTags);
-            };
-        });
-    };
+    // => CoreModel
     
     // Méthode pour récupérer le tag a l'Id "x"
     static findById(id, callback) {

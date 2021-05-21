@@ -10,6 +10,9 @@ class Question extends CoreModel {
     answers_id;
     quizzes_id;
     
+    // Prop statique pour la factorisation
+    static tableName = "questions";
+    
     // Mise en place du constructor
     // Prend en param un objet qui contient toutes les valeurs à recopier dans l'instance
     constructor(obj) {

@@ -97,3 +97,19 @@ const User = require('./app/models/user');
 //         user.update();
 //     };
 // });
+
+const CoreModel = require('./app/models/coreModels');
+
+// // Test This 
+// const victor = new CoreModel({});
+// victor.firstname = "Victor";
+// victor.showThis();
+// console.log("Normal ",victor);
+
+// CoreModel.showStaticThis(); // On récupere la classe CoreModel
+// console.log("Statique ",victor);
+
+const Level = require('./app/models/level');
+Level.findAll((err, levels) => {
+    console.log(err, levels);
+});

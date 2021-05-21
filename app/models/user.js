@@ -9,6 +9,9 @@ class User extends CoreModel {
     firstname;
     lastname;
     
+    // Prop statique pour la factorisation
+    static tableName = "app_users";
+    
     // Mise en place du constructor
     // Prend en param un objet qui contient toutes les valeurs à recopier dans l'instance
     constructor(obj) {
@@ -23,38 +26,40 @@ class User extends CoreModel {
         return "Bonjour je m'appelle " + this.firstname + " " + this.lastname;
     }
     
-    // Méthode pour afficher tous les users
-    static findAll(callback) {
-        // Query pour récupérer tous les users de la BDD ...
-        const query = `SELECT * FROM "app_users"`;
+    // Voir CoreModel
+    
+    // // Méthode pour afficher tous les users
+    // static findAll(callback) {
+    //     // Query pour récupérer tous les users de la BDD ...
+    //     const query = `SELECT * FROM "app_users"`;
                 
         
-        // ... on passe la requête au client, avec un callback qu'on doit passer en argument à findAll(),
-        dbConnection.query(query, (err, data) => {
-            if (err) {
-                console.log(err);
-                // On passe l'erreur mais pas la data
-                callback(err, null);
-            } else {
-                // console.log(data);
-                // Pas d'erreur donc on renvoie la liste des résultats au callback
-                // liste des résultats dans data.rows (==> liste d'objet)
+    //     // ... on passe la requête au client, avec un callback qu'on doit passer en argument à findAll(),
+    //     dbConnection.query(query, (err, data) => {
+    //         if (err) {
+    //             console.log(err);
+    //             // On passe l'erreur mais pas la data
+    //             callback(err, null);
+    //         } else {
+    //             // console.log(data);
+    //             // Pas d'erreur donc on renvoie la liste des résultats au callback
+    //             // liste des résultats dans data.rows (==> liste d'objet)
                 
-                // Donc avant de récup les résults => on les tranforme en instance de User
-                let allUsers = [];
+    //             // Donc avant de récup les résults => on les tranforme en instance de User
+    //             let allUsers = [];
                 
-                for (let prop in data.rows) {
-                    // console.log(data.rows[prop]);
-                    // console.log(data.rows);
-                    const users = new User(data.rows[prop]);
-                    // console.log(users);
-                    allUsers.push(users);
-                };
-                // console.log(allUsers);
-                callback(null, allUsers);
-            };
-        });
-    };
+    //             for (let prop in data.rows) {
+    //                 // console.log(data.rows[prop]);
+    //                 // console.log(data.rows);
+    //                 const users = new User(data.rows[prop]);
+    //                 // console.log(users);
+    //                 allUsers.push(users);
+    //             };
+    //             // console.log(allUsers);
+    //             callback(null, allUsers);
+    //         };
+    //     });
+    // };
     
     // Méthode pour récupérer le user à l'Id "x"
     static findById(id, callback) {

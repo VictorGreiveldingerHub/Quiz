@@ -7,6 +7,9 @@ class Level extends CoreModel {
     // Mise en place des propriétés
     name;
     
+    // Prop statique pour la factorisation
+    static tableName = "levels";
+    
     // Mise en place du constructor
     // Prend en param un objet qui contient toutes les valeurs à recopier dans l'instance
     constructor(obj) {
