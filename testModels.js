@@ -10,8 +10,16 @@ const Question = require('./app/models/question');
 
 // Créer un level avec le nom "GodLike" et l'insérer en BDD
 const Level = require('./app/models/level');
-const newLevel = new Level({
-    name: "GodLike",
-    status: 1
-});
-newLevel.insert(console.log);
+// const newLevel = new Level({
+//     name: "Est ce que save marche ?",
+//     status: 1
+// });
+// newLevel.save(console.log);
+
+// Level.findById(8, (err, level) => {
+//     if (err) {
+//         console.log(err);
+//     } else {
+//         level.delete();
+//     };
+// });

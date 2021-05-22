@@ -208,6 +208,28 @@ class CoreModel {
             };
         });
     };
+    
+    // Méthode pour soit créer un nouvel élément soit l'update dans la BDD
+    save () {
+        // SI l'id existe => update
+        if (this.id) {
+            this.update((err, data) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log(data);
+                }
+            });
+        } else {
+            this.insert((err, data) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log(data);
+                }
+            });
+        };
+    };
 };
 
 // On export la classe !
