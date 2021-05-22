@@ -26,7 +26,7 @@ class User extends CoreModel {
         return "Bonjour je m'appelle " + this.firstname + " " + this.lastname;
     }
     
-    // Voir CoreModel
+    /* Voir CoreModel
     
     // // Méthode pour afficher tous les users
     // static findAll(callback) {
@@ -61,27 +61,27 @@ class User extends CoreModel {
     //     });
     // };
     
-    // Méthode pour récupérer le user à l'Id "x"
-    static findById(id, callback) {
-        const query = `SELECT * FROM "app_users" WHERE "id" = $1`;
-        const values = [id]; // Récupérer le bon Id
+    // // Méthode pour récupérer le user à l'Id "x"
+    // static findById(id, callback) {
+    //     const query = `SELECT * FROM "app_users" WHERE "id" = $1`;
+    //     const values = [id]; // Récupérer le bon Id
         
-        dbConnection.query(query, values, (err, data) => {
-            if (err) {
-                callback(err, null);
-            } else {
-                // verification que le résultat existe avant transformation
-                if (data.rows[0]) {
-                    // console.log(data.rows[0]);
-                    const myUser = new User(data.rows[0]);
-                    callback(null, myUser);
-                } else {
-                    callback(null, undefined);
-                };
+    //     dbConnection.query(query, values, (err, data) => {
+    //         if (err) {
+    //             callback(err, null);
+    //         } else {
+    //             // verification que le résultat existe avant transformation
+    //             if (data.rows[0]) {
+    //                 // console.log(data.rows[0]);
+    //                 const myUser = new User(data.rows[0]);
+    //                 callback(null, myUser);
+    //             } else {
+    //                 callback(null, undefined);
+    //             };
                 
-            };
-        });
-    };
+    //         };
+    //     });
+    // };
     
     // Méthode pour update un user
     update(callback) {
@@ -146,6 +146,7 @@ class User extends CoreModel {
             };
         });
     };
+    */
 };
 
 // On export la classe !
