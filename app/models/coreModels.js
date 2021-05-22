@@ -230,6 +230,36 @@ class CoreModel {
             });
         };
     };
+    
+    // Méthode pour trouver des instances en fonction de paramètres non défini à l'avance
+    static findBy (params, callback) {
+        let arrayOfConditions = ["1 = 1"];
+        let indexDollar = 1;
+        let values = [];
+        
+        for (let prop in params) {
+            let condition = `${prop} = $${indexDollar}`;
+            arrayOfConditions.push(condition);
+            values.push(params[prop]);
+            indexDollar++;
+        };
+        
+        const query = `SELECT * FROM "${this.tableName}" WHERE ${arrayOfConditions.join(" AND ")}`;
+        
+        dbConnection.query(query, values, (err, data) => {
+            if (err) {
+                console.log(err);
+                callback(err, null);
+            } else {
+                let allModels = [];
+                
+                for (let prop in data.rows) {
+                    allModels.push(new this(data.rows[prop]));
+                };
+                callback(null, allModels);
+            };
+        });
+    };
 };
 
 // On export la classe !

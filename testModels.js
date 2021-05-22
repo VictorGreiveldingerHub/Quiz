@@ -23,3 +23,5 @@ const Level = require('./app/models/level');
 //         level.delete();
 //     };
 // });
+const Tag = require('./app/models/tag');
+Tag.findBy({}, console.log);
