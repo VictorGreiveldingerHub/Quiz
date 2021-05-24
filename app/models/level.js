@@ -1,23 +1,20 @@
-// Import du CoreModel
-const CoreModel = require('./coreModels');
+const Sequelize = require('sequelize');
+const dbConnection = require('../dbConnection');
 
-// Création d'une classe par entité
-// On fait hériter la classe du CM
-class Level extends CoreModel {
-    // Mise en place des propriétés
-    name;
-    
-    // Prop statique pour la factorisation
-    static tableName = "levels";
-    
-    // Mise en place du constructor
-    // Prend en param un objet qui contient toutes les valeurs à recopier dans l'instance
-    constructor(obj) {
-        // Heritage du coreModel
-        super(obj);
-        this.name = obj.name;
-    };
-};
+class Level extends Sequelize.Model {};
+
+Level.init({
+    name: {
+        type: Sequelize.TEXT,
+        allowNull: false,   
+    },
+    status: Sequelize.INTEGER,
+}, {
+    sequelize: dbConnection, 
+    createdAt: "created_at",
+    updatedAt: "updated_at",
+    tableName: "levels" 
+});
 
 // On export la classe !
 module.exports = Level;

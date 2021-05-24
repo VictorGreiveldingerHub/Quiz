@@ -1,24 +1,29 @@
-const CoreModel = require('./coreModels');
+const  Sequelize  = require('sequelize');
+const dbConnection = require('../dbConnection');
 
 // Création d'une classe par entité 
-class Quiz extends CoreModel {
-    // Mise en place des propriétés
-    title;
-    description;
-    app_users_id;
+class Quiz extends Sequelize.Model {
     
-    // Prop statique pour la factorisation
-    static tableName = "quizzes";
-    
-    // Mise en place du constructor
-    // Prend en param un objet qui contient toutes les valeurs à recopier dans l'instance
-    constructor(obj) {
-        super(obj);
-        this.title = obj.title;
-        this.description = obj.description;
-        this.app_users_id = obj.app_users_id;
-    };
 };
+
+Quiz.init({
+    title: {
+       type: Sequelize.TEXT,
+       allowNull: false 
+    },
+    description: Sequelize.TEXT,
+    status: Sequelize.INTEGER,
+    // Pour l'instant on ne déf pas ça => on verra cela avec les Associations
+    // app_users_id: {
+    //     type: Sequelize.INTEGER,
+    //     allowNull: false 
+    // }
+}, {
+    sequelize: dbConnection,
+    tableName: "quizzes",
+    createdAt: "created_at",
+    updatedAt: "updated_at",
+})
 
 // On export la classe !
 module.exports = Quiz;
