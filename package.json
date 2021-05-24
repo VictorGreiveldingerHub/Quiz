@@ -19,6 +19,7 @@
   "homepage": "https://github.com/VictorGreiveldingerHub/Quiz#readme",
   "dependencies": {
     "dotenv": "^9.0.2",
-    "pg": "^8.6.0"
+    "pg": "^8.6.0",
+    "sequelize": "^6.6.2"
   }
 }
