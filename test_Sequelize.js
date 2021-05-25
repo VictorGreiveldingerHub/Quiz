@@ -56,27 +56,56 @@ require('dotenv').config();
 //     console.log(`Le quiz numéro ${quiz.id} a été écrit par ${quiz.author}`);
 // }).catch( console.error );
 
-const { Quiz } = require ('./app/models/associations');
+const { Quiz, Question, Tag } = require ('./app/models/associations');
 
-Quiz.findByPk(1, {
-    include: [
-        "tags",
-        {
-            association: "questions",
-            include : [
-                "level"
-            ]
-        },
-        "author"
-    ]
-}).then((quiz) => {
-    console.log(`Détails pour le quiz ${quiz.id} : écrit par ${quiz.author.getFullName()}`);
-    // console.log(quiz.tags);
-    for (let tag of quiz.tags){
-        console.log(`Comporte la catégorie : ${tag.name}`);
-    };
-    for (let question of quiz.questions){
-        console.log(`Niveau ${question.level.name} : ${question.question} `)
-    };
+// Quiz.findByPk(1, {
+//     include: [
+//         "tags",
+//         {
+//             association: "questions",
+//             include : [
+//                 "level"
+//             ]
+//         },
+//         "author"
+//     ]
+// }).then((quiz) => {
+//     console.log(`Détails pour le quiz ${quiz.id} : écrit par ${quiz.author.getFullName()}`);
+//     // console.log(quiz.tags);
+//     for (let tag of quiz.tags){
+//         console.log(`Comporte la catégorie : ${tag.name}`);
+//     };
+//     for (let question of quiz.questions){
+//         console.log(`Niveau ${question.level.name} : ${question.question} `)
+//     };
     
-}).catch(console.error);
+// }).catch(console.error);
+
+// Question.findByPk(17, {
+//     include: [
+//         "answers",
+//         "level",
+//         "good_answer"
+//     ],
+// }).then( (question) => {
+//     console.log(`Question numéro ${question.id} : Niveau ${question.level.name} : ${question.question}`);
+//     for (let answer of question.answers) {
+//         console.log(`- ${answer.description}`);
+//     };
+    
+//     console.log(`La bonne réponse est : ${question.good_answer.description}`)
+// }).catch( console.error);
+
+/**
+ * Quand on définit une association N:N les modèles récupèrent des méthodes magique dont on peut 
+ * se servir pour créer de nouvelles relations
+ * PAr exemple pour dire, j'ajoute le tag 1 au quiz 4"
+*/
+// Quiz.findByPk(4).then( (quiz) => { // je récupère le quiz
+//     Tag.findByPk(1).then( (tag) => { // je récupère le tag
+//         quiz.addTag(tag); // et paf 
+//         quiz.save();
+        
+//         quiz.removeTag(); // et hop je l'enleve
+//     });
+// }).catch(console.error);

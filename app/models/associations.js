@@ -64,6 +64,32 @@ Quiz.belongsToMany(Tag, {
     otherKey: "tags_id",
     timestamps: false,
     as: "tags"
-})
+});
+
+
+// Question <-> Answer, première relation : les réponses possibles
+// "1 question possède N réponses possibles"
+Question.hasMany(Answer, {
+    foreignKey: "questions_id",
+    as: "answers"
+});
+
+// "une Réponse appartient à une seule question"
+Answer.belongsTo(Question, {
+    foreignKey: "questions_id",
+    as: "question"
+});
+
+
+// Question <-> Answer, deuxième relation : la bonne réponse
+// "1 question possède 1 seule bonne réponse"
+// ASTUCE : instinctivement on voudrait utiliser hasOne mais hasOne cherche la clé etrangere dans le modele cible
+// càd celui passer en parametre
+// Ici on utilise belongsTo car c'est la seule association qui permet de définir une clé étrangère dans le modele lui même
+Question.belongsTo(Answer, {
+    foreignKey: "answers_id",
+    as: "good_answer"
+});
+
 
 module.exports = {Tag, Answer, Level, Quiz, User, Question}
