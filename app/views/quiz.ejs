@@ -1,0 +1,18 @@
+<%- include('partials/header') %>
+    <div>
+        <h2><%= quiz.title %></h2>
+        <p>
+            <%=quiz.description%>
+        </p>
+    </div>
+
+    <div class="row">
+        <% for (let prop of quiz) { %>
+            <div class="col">
+                <h3><%=prop.author%>></h3>
+                <h5>réponses</h5>
+            </div>
+       <% } %>
+
+    </div>
+<%- include('partials/footer') %>

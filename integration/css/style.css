@@ -40,10 +40,13 @@ a {
 
 .row {
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .row > .col {
     flex: 1;
+    margin: 2em;
 }
 
 .question {

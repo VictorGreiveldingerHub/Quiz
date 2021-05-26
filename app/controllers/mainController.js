@@ -9,7 +9,7 @@ const mainController = {
             ]
         }).then( (quizzes) => {
             res.render('homepage', {
-                quizzes
+                quizzes,
             })
         }).catch((err) => {
             console.trace(err);
