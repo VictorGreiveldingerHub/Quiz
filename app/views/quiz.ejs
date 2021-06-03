@@ -1,18 +1,29 @@
 <%- include('partials/header') %>
     <div>
         <h2><%= quiz.title %></h2>
-        <p>
-            <%=quiz.description%>
-        </p>
+        <span> <%= quiz.questions.length %> questions dans ce quiz</span>
+        <p>Ecrit par : <%=quiz.author.getFullName()%></p>
+        <p><%= quiz.description %></p>
+        <ul>Liste des catégories :
+            <% for (let tag of quiz.tags) {%>
+                <a href="/tags/<%=tag.id%>">
+                    <li><%= tag.name %></li>
+                </a>
+            <% } %>
+        </ul>
     </div>
 
     <div class="row">
-        <% for (let prop of quiz) { %>
-            <div class="col">
-                <h3><%=prop.author%>></h3>
-                <h5>réponses</h5>
+        <% for (let question of quiz.questions) {%>
+            <div class="col question">
+                <span class="level level--<%= question.level.name.toLowerCase() %>"> <%= question.level.name %></span>
+                <div class="question__question"><%= question.question %></div>
+                <ul>
+                    <% for (let answer of question.answers) { %>
+                        <li><%= answer.description %></li>
+                    <% } %>
+                </ul>
             </div>
-       <% } %>
-
+        <% } %>
     </div>
 <%- include('partials/footer') %>

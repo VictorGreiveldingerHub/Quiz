@@ -1,4 +1,4 @@
-const { Quiz } = require('../models/associations');
+const { Quiz } = require('../models'); // A la place de dataMapper par exemple
 
 const mainController = {
     
@@ -13,7 +13,7 @@ const mainController = {
             })
         }).catch((err) => {
             console.trace(err);
-            res.status(500).render('500', err);
+            res.status(500).render('500', {err});
         });
     },
 };

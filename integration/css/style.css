@@ -1,6 +1,6 @@
 body {
     font-family: Monospace, sans-serif;
-    background-color: #f0f;
+    background-color: tomato;
 }
 
 h1 {
@@ -62,14 +62,17 @@ a {
     font-size: 0.8em;
 }
 
-.level--beginner {
+.level--beginner,
+.level--débutant {
     color: darkgreen;
 }
 
-.level--medium {
+.level--medium,
+.level--confirmé {
     color: darkgoldenrod;
 }
 
+.level--expert,
 .level--expert {
     color: darkred;
 }

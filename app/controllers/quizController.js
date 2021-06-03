@@ -1,4 +1,4 @@
-const { Quiz } = require('../models/associations');
+const { Quiz } = require('../models');
 
 const quizController = {
     
@@ -7,28 +7,29 @@ const quizController = {
         
         Quiz.findByPk(quizId, {
             include: [
+                "tags",
                 "author",
                 {
                     association: "questions",
-                    include: [
+                    include : [
                         "level",
-                        "answer"
+                        "answers"
                     ]
                 },
-                "tags"
-            ]
+            ],
         }).then((quiz) => {
+            // console.log(quiz);
             
-            if(! quiz) {
+            if (! quiz) {
                 return next();
             };
-            console.log(quiz);
+            
             res.render('quiz', {
                 quiz
             });
         }).catch((err) => {
             console.trace(err);
-            res.status(500).render('500', err);
+            res.status(500).render('500', {err});
         });
     },
 };

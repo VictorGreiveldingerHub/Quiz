@@ -23,8 +23,8 @@ class User extends Model {
     // };
     
     getFullName() {
-        return " " + this.firstname + " " + this.lastname;
-    }
+        return this.firstname + ' ' + this.lastname;
+    };
     
     /* Voir CoreModel
     
