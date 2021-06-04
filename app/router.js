@@ -14,7 +14,9 @@ router.get('/tags', tagController.tagsPage );
 router.get('/tags/:id', tagController.pageQuizByTag );
 
 router.get('/login', authController.loginPage);
+
 router.get('/signup', authController.signupPage);
+router.post('/signup', authController.singupAction);
 
 
 
