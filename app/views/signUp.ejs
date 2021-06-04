@@ -1,10 +1,12 @@
 <%- include('partials/header') %>
     
     <div>
-        <% if (locals.error) { %>
-            <div class="error">
-                <%= error %>
-            </div>
+        <% if (locals.errorsList) { %>
+            <% for (let error of errorsList) { %>
+                <div class="error">
+                    <%= error %>
+                </div>
+            <% } %>
         <% } %>
         <form method="POST" action='/signup'>
             <div>

@@ -30,14 +30,21 @@ const authController = {
                 email: data.email
             }
         }).then((user) => {
+            // On se prépare une liste vide pour récuperer toutes les erreurs
+            let errorsList = [];
             
             if (user) {
-                return res.render('signup', {
-                    error: 'Cet email existe déjà'
-                });
+                errorsList.push('Cet email existe déjà')
             };
             
             // - nom prénom non vide
+            if (!data.firstname) {
+                errorsList.push('Le prénom ne doit pas être vide')
+            };
+            
+            if (!data.lastname) {
+                errorsList.push('Le nom ne doit pas être vide')
+            };
             
             // - adresse email au bon format
             
@@ -49,6 +56,14 @@ const authController = {
             
             // Si on a au moins une erreur on réaffiche le form en affichant les erreurs
             
+            // Si il n'y a pas d'erreur dans le tableau errorsList
+            if (errorsList.length === 0) {
+                
+            } else {
+                res.render('signup', {
+                    errorsList
+                });
+            };
             
             // Si tout va bien : Insérer les données dans la BDD
             
