@@ -138,6 +138,11 @@ const authController = {
             console.trace(err);
             res.status(500).render('500', {err});
         });
+    },
+    
+    logout: (req, res) => {
+        delete req.session.user;
+        res.redirect('/');
     }
 };
 

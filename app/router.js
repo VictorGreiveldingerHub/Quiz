@@ -19,7 +19,7 @@ router.post('/login', authController.loginAction);
 router.get('/signup', authController.signupPage);
 router.post('/signup', authController.singupAction);
 
-
+router.get('/logout', authController.logout);
 
 router.use((req, res) => {res.status(404).render('404')});
 

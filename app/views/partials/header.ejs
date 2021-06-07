@@ -32,6 +32,22 @@
                             Accueil
                         </a>
                     </li>
+                    
+                    <% if (locals.user) { %>
+                        <li>
+                            <a href="/#">
+                                <i></i>
+                                Mon compte
+                            </a>
+                        </li>
+    
+                        <li>
+                            <a href="/logout">
+                                <i></i>
+                                Déconnexion
+                            </a>
+                        </li>            
+                    <% } else { %>
 
                     <li>
                         <a href="/signup">
@@ -46,6 +62,6 @@
                             Se connecter
                         </a>
                     </li>
-
+                    <% } %>
                 </ul>
             </nav>

@@ -25,6 +25,10 @@ app.use(express.urlencoded({extended: true}));
 
 app.use(express.static('integration'));
 
+// Le middleware pour vérifier le user connecté + transmettre l'info aux views
+const userMD = require('./app/middleware/userMD');
+app.use( userMD );
+
 const router = require('./app/router');
 app.use(router);
 
