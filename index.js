@@ -5,6 +5,18 @@ const express = require('express');
 
 const app = express();
 
+// On ajoute la gestion des sessions
+const session = require('express-session');
+app.use(session({
+    secret: 'I am the Secret',
+    saveUninitialized: true,
+    resave: true,
+    cookie: {
+        secure: false,
+        maxAge: (1000*60*60)
+    }
+}));
+
 app.set('view engine', 'ejs');
 app.set('views', 'app/views');
 
@@ -12,7 +24,6 @@ app.set('views', 'app/views');
 app.use(express.urlencoded({extended: true}));
 
 app.use(express.static('integration'));
-app.use(express.urlencoded({extended: true}));
 
 const router = require('./app/router');
 app.use(router);

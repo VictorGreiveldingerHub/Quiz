@@ -15,7 +15,42 @@ const authController = {
     
     // Traiter le formulaire
     loginAction: (req, res) => {
+        // récup les infos du form
+        const { email, password } = req.body;
+        // const email = req.body.email;
+        // const password = req.body.password;
         
+        // tenter de récuperer l'utilisateur grace a son email
+        User.findOne({
+            where: {
+                email
+            }
+        }).then((user) => {
+            // si il n'existe pas => err
+            if (!user) {
+                return res.render('login', {
+                    error: "Cet email n'existe pas"
+                });
+            };
+            
+            // si il existe on vérifie le mot de passe 
+            if (! bcrypt.compareSync(password, user.password)) {
+                // si le mdp n'est pas bon => err
+                return res.render('login', {
+                    error: "Mauvais mot de passe"
+                });
+            };
+            
+            // Sinon tout est bon => on ajoute l'utilisateur dans la session
+            req.session.user = user;
+            
+            // et on redirige vers "/"
+            res.redirect('/');
+            
+        }).catch((err) => {
+            console.trace(err);
+            res.status(500).render('500', {err});
+        });
     },
     
     // afficher le form d'inscription
@@ -82,7 +117,12 @@ const authController = {
                 newUser.password = bcrypt.hashSync(data.password, 10);
                 
                 newUser.save().then((user) => {
-                    res.redirect('/login');
+                    // Au lieu de mettre une redirection vers /login
+                    // res.redirect('/login);
+                    // On récup un utilisateur => on le met directement en session
+                    // Du coup il est déjà loggé.
+                    req.session.user = user;
+                    res.redirect('/');
                 });
                 
             } else {
