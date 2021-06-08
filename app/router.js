@@ -5,6 +5,12 @@ const mainController = require('./controllers/mainController');
 const quizController = require('./controllers/quizController');
 const tagController = require('./controllers/tagController');
 const authController = require('./controllers/authController');
+const userController = require('./controllers/userController');
+const adminController = require('./controllers/adminController');
+
+// Import des middlewares
+const userMD = require('../app/middleware/userMD');
+const redirectMD = require('../app/middleware/redirectMD');
 
 router.get('/', mainController.homePage);
 
@@ -20,6 +26,10 @@ router.get('/signup', authController.signupPage);
 router.post('/signup', authController.singupAction);
 
 router.get('/logout', authController.logout);
+
+router.get('/profile', userMD, redirectMD, userController.userPage);
+
+router.get('/admin', userMD, adminController.adminPage);
 
 router.use((req, res) => {res.status(404).render('404')});
 

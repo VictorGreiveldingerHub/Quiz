@@ -167,8 +167,11 @@ User.init({
         type: Sequelize.TEXT,
         allowNull: false,
     },
-    status: Sequelize.INTEGER
-}, {
+    status: Sequelize.INTEGER,
+    
+    role: Sequelize.TEXT
+    },
+    { 
     sequelize: dbConnection,
     tableName: "app_users",
     createdAt: "created_at",
