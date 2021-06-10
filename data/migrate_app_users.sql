@@ -3,3 +3,4 @@ ALTER TABLE "app_users" ADD COLUMN "role" TEXT DEFAULT 'user';
 
 -- Chuck Norris est un admin !
 UPDATE "app_users" SET "role"='admin' WHERE "id"=3;
+UPDATE "app_users" SET "role"='admin' WHERE "id"=8;

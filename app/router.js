@@ -11,6 +11,7 @@ const adminController = require('./controllers/adminController');
 // Import des middlewares
 const userMD = require('../app/middleware/userMD');
 const redirectMD = require('../app/middleware/redirectMD');
+const adminMD = require('./middleware/adminMD');
 
 router.get('/', mainController.homePage);
 
@@ -29,7 +30,7 @@ router.get('/logout', authController.logout);
 
 router.get('/profile', userMD, redirectMD, userController.userPage);
 
-router.get('/admin', userMD, adminController.adminPage);
+router.get('/admin', redirectMD, adminMD, adminController.adminPage);
 
 router.use((req, res) => {res.status(404).render('404')});
 

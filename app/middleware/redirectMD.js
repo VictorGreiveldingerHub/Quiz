@@ -3,9 +3,8 @@ const redirectMD = (req, res, next) => {
     if (! req.session.user) {
         res.redirect('/login');
     } else {
-        res.render('/profile');
+        next();
     };
-    next();
 };
 
 module.exports = redirectMD;
