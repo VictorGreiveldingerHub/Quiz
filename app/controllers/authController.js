@@ -8,7 +8,7 @@ const bcrypt = require('bcrypt');
 
 const authController = {
     
-    // Afficher le fromaulaire de connexion (loginPage)
+    // Afficher le formulaire de connexion (loginPage)
     loginPage: (req, res) => {
         res.render('login');
     },
