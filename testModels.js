@@ -24,4 +24,4 @@ const Level = require('./app/models/level');
 //     };
 // });
 const Tag = require('./app/models/tag');
-Tag.findBy({}, console.log);
+// Tag.findBy({}, console.log);

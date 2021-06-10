@@ -1,0 +1,14 @@
+<%- include('partials/header') %> 
+
+<h3> Liste des sujets </h3>
+
+<div class="row">
+  <% for (let tag of tags) { %>
+    <a href="/tags/<%=tag.id%>">
+      <div class="tag tags--<%= tag.name.toLowerCase() %>"> <%= tag.name %> </div>
+    </a>
+  <% } %>
+</div>
+
+
+<%- include('partials/footer') %> 

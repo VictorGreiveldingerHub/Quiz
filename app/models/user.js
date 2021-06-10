@@ -1,30 +1,30 @@
-const CoreModel = require('./coreModels');
+const { Model, Sequelize } = require('sequelize');
 const dbConnection = require('../dbConnection');
 
 // Création d'une classe par entité 
-class User extends CoreModel {
-    // Mise en place des propriétés
-    email;
-    password;
-    firstname;
-    lastname;
+class User extends Model {
+    // // Mise en place des propriétés
+    // email;
+    // password;
+    // firstname;
+    // lastname;
     
-    // Prop statique pour la factorisation
-    static tableName = "app_users";
+    // // Prop statique pour la factorisation
+    // static tableName = "app_users";
     
-    // Mise en place du constructor
-    // Prend en param un objet qui contient toutes les valeurs à recopier dans l'instance
-    constructor(obj) {
-        super(obj);
-        this.email = obj.email;
-        this.password = obj.password;
-        this.firstname = obj.firstname;
-        this.lastname = obj.lastname;
-    };
+    // // Mise en place du constructor
+    // // Prend en param un objet qui contient toutes les valeurs à recopier dans l'instance
+    // constructor(obj) {
+    //     super(obj);
+    //     this.email = obj.email;
+    //     this.password = obj.password;
+    //     this.firstname = obj.firstname;
+    //     this.lastname = obj.lastname;
+    // };
     
     getFullName() {
-        return "Bonjour je m'appelle " + this.firstname + " " + this.lastname;
-    }
+        return this.firstname + ' ' + this.lastname;
+    };
     
     /* Voir CoreModel
     
@@ -148,6 +148,35 @@ class User extends CoreModel {
     };
     */
 };
+
+User.init({
+    email: {
+        type: Sequelize.TEXT,
+        allowNull: false,
+        unique: true
+    },
+    password: {
+        type: Sequelize.TEXT,
+        allowNull: false,
+    },
+    firstname: {
+        type: Sequelize.TEXT,
+        allowNull: false,
+    },
+    lastname: {
+        type: Sequelize.TEXT,
+        allowNull: false,
+    },
+    status: Sequelize.INTEGER,
+    
+    role: Sequelize.TEXT
+    },
+    { 
+    sequelize: dbConnection,
+    tableName: "app_users",
+    createdAt: "created_at",
+    updatedAt: "updated_at"
+});
 
 // On export la classe !
 module.exports = User;
